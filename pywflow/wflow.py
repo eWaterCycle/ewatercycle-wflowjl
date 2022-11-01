@@ -1,5 +1,5 @@
-from typing import Dict, List
-
+from typing import Dict
+from typing import List
 import numpy as np
 from juliacall import Main as jl
 
@@ -327,7 +327,7 @@ class BMI:
         """
         if np.any(inds == 0):
             raise ValueError(
-                "Julia indices start at 1." " Please adjust your indices accordingly."
+                "Julia indices start at 1. Please adjust your indices accordingly."
             )
 
         return np.array(
