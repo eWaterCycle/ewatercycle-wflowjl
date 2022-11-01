@@ -1,10 +1,11 @@
 from typing import Dict
 from typing import List
 import numpy as np
+from bmipy import Bmi
 from juliacall import Main as jl
 
 
-class BMI:
+class WflowBMI(Bmi):
     def __init__(self):
         jl.seval("using Wflow")
 
