@@ -45,7 +45,7 @@ jobs:
       - name: Install Wflow.jl into julia
         shell: bash -l {0}
         run: |
-           julia -e 'using Pkg; Pkg.add(\"Wflow\")'
+           julia -e 'using Pkg; Pkg.add("Wflow")'
       - name: Run unit tests
         run: pytest -v
       - name: Verify that we can build the package
