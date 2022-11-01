@@ -36,6 +36,11 @@ cd pywflow
 python3 -m pip install .
 ```
 
+If `juliacall` is confused by detecting both a Conda environment and a virtual environment, disable the automatic activation of conda's base environment with:
+```console
+conda config --set auto_activate_base false
+```
+
 ## Documentation
 
 Include a link to your project's full documentation here.
