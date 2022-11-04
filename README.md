@@ -48,6 +48,7 @@ model.initialize(config_file)
 model.update()  # Advance the model one time step
 ```
 
+For a short overview of the base functionality, see the [example notebook](./notebooks/pywflow_example.ipynb).
 
 <!---
 ## Documentation
