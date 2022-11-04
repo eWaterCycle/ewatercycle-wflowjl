@@ -11,6 +11,7 @@ member-warnings: false
 
 ignore-paths:
   - docs
+  - build
 
 pyroma:
     run: true
@@ -26,6 +27,11 @@ pydocstyle:
         D212,  # Multi-line docstring summary should start at the first line
         D213,  # Multi-line docstring summary should start at the second line
         D404,  # First word of the docstring should not be This
+    ]
+
+pyflakes:
+    disable: [
+        F401,  # unused import: already checked by pylint
     ]
 
 mypy:

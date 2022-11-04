@@ -276,6 +276,7 @@ class WflowBMI(Bmi):
         """
         return jl.Wflow.BMI.get_time_step(self.model)
 
+    # pylint: disable=arguments-differ
     def get_value(self, name: str) -> np.ndarray:
         """Get a copy of values of the given variable.
         This is a getter for the model, used to access the model's
@@ -311,6 +312,7 @@ class WflowBMI(Bmi):
             "This method is incompatible with Julia-Python interface"
         )
 
+    # pylint: disable=arguments-differ
     def get_value_at_indices(self, name: str, inds: np.ndarray) -> np.ndarray:
         """Get values at particular indices.
         Parameters
@@ -337,20 +339,20 @@ class WflowBMI(Bmi):
             )
         )
 
-    def set_value(self, name: str, src: np.ndarray) -> None:
+    def set_value(self, name: str, values: np.ndarray) -> None:
         """Specify a new value for a model variable.
         This is the setter for the model, used to change the model's
-        current state. It accepts, through *src*, a new value for a
-        model variable, with the type, size and rank of *src*
+        current state. It accepts, through *values*, a new value for a
+        model variable, with the type, size and rank of *values*
         dependent on the variable.
         Parameters
         ----------
         name : str
             An input or output variable name, a CSDMS Standard Name.
-        src : array_like
+        values : array_like
             The new value for the specified variable.
         """
-        jl.Wflow.BMI.set_value(self.model, name, jl.convert(jl.Vector, src))
+        jl.Wflow.BMI.set_value(self.model, name, jl.convert(jl.Vector, values))
 
     def set_value_at_indices(
         self, name: str, inds: np.ndarray, src: np.ndarray

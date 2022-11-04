@@ -1,6 +1,6 @@
 """Documentation about pywflow"""
 import logging
-from .wflow import WflowBMI  # pylint: disable=unused-import
+from .wflow import WflowBMI
 
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
