@@ -1,14 +1,16 @@
 # pywflow
 [![github repo badge](https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue)](https://github.com/eWaterCycle/pywflow)
 [![fair-software badge](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow)](https://fair-software.eu)
-
-<!---
 [![github license badge](https://img.shields.io/github/license/eWaterCycle/pywflow)](https://github.com/eWaterCycle/pywflow)
 [![build](https://github.com/eWaterCycle/pywflow/actions/workflows/build.yml/badge.svg)](https://github.com/eWaterCycle/pywflow/actions/workflows/build.yml)
+[![workflow scc badge](https://sonarcloud.io/api/project_badges/measure?project=eWaterCycle_pywflow&metric=coverage)](https://sonarcloud.io/dashboard?id=eWaterCycle_pywflow)
+
+
+<!---
 [![RSD](https://img.shields.io/badge/rsd-pywflow-00a3e3.svg)](https://www.research-software.nl/software/pywflow)
 [![DOI](https://zenodo.org/badge/DOI/<replace-with-created-DOI>.svg)](https://doi.org/<replace-with-created-DOI>)
-[![workflow scc badge](https://sonarcloud.io/api/project_badges/measure?project=eWaterCycle_pywflow&metric=coverage)](https://sonarcloud.io/dashboard?id=eWaterCycle_pywflow)
 [![Documentation Status](https://readthedocs.org/projects/pywflow/badge/?version=latest)](https://pywflow.readthedocs.io/en/latest/?badge=latest)
+
 -->
 
 `pywflow` is a wrapper for the Basic Model Interface of the [Wflow.jl hydrological model](https://github.com/Deltares/Wflow.jl) developed by [Deltares](https://www.deltares.nl/en/).
