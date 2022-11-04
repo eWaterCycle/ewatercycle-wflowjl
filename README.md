@@ -25,11 +25,29 @@ cd pywflow
 pip install .
 ```
 
+You can use either an existing Julia installation with `Wflow.jl` installed, or rely on `juliacall` to manage Julia and the dependencies. `juliacall` will set up Julia and `Wflow.jl` the first time that `pywflow` is run.
+
 
 Note: if `juliacall` is confused by detecting both a Conda environment and a virtual environment, disable the automatic activation of conda's base environment with:
 ```console
 conda config --set auto_activate_base false
 ```
+And restart the shell/environment.
+
+## Usage
+```python
+from pywflow import WflowBMI
+
+# Config files and example data are available at:
+#  https://deltares.github.io/Wflow.jl/stable/user_guide/sample_data/
+config_file = "~/sbm_config.toml"
+
+model = WflowBMI()
+model.initialize(config_file)
+
+model.update()  # Advance the model one time step
+```
+
 
 <!---
 ## Documentation
