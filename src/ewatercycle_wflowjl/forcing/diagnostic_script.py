@@ -29,7 +29,6 @@ def create_provenance_record():
             "alidoost_sarah",
             "aerts_jerom",
             "andela_bouwe",
-            "schilperoort_bart"
         ],
         "projects": [
             "ewatercycle",
@@ -178,8 +177,8 @@ def main(cfg):
         all_vars, provenance = get_input_cubes(metadata)
 
         if dataset == "ERA5":
-            all_vars["tas"] = shift_era5_time_coordinate(all_vars["tas"])
-            all_vars["psl"] = shift_era5_time_coordinate(all_vars["psl"])
+            for var in ["tas", "psl"]:
+                all_vars[var] = shift_era5_time_coordinate(all_vars[var])
 
         # Interpolating variables onto the dem grid
         # Read the target cube, which contains target grid and target elevation
