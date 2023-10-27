@@ -1,7 +1,7 @@
 """Forcing related functionality for wflow."""
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Optional
 
 from ewatercycle.base.forcing import DefaultForcing
 from ewatercycle.esmvaltool.builder import RecipeBuilder
@@ -33,8 +33,8 @@ class WflowJlForcing(DefaultForcing):
         end_time: str,
         shape: str,
         dem_file: str,
-        directory: Optional[str] = None,
-        extract_region: Optional[Dict[str, float]] = None,
+        directory: str | None,
+        extract_region: dict[str, float] | None,
     ) -> "WflowJlForcing":
         """Generate forcings for a model.
 
@@ -59,7 +59,7 @@ class WflowJlForcing(DefaultForcing):
                 contain `start_longitude`, `end_longitude`, `start_latitude`,
                 `end_latitude`
         """
-        return super(WflowJlForcing, cls).generate(
+        return super().generate(
             dataset=dataset,
             start_time=start_time,
             end_time=end_time,
@@ -76,7 +76,7 @@ class WflowJlForcing(DefaultForcing):
         end_time: datetime,
         shape: Path,
         dataset: Dataset | str | dict,
-        **model_specific_options
+        **model_specific_options,
     ):
         extract_region = model_specific_options["extract_region"]
         return build_wflow_recipe(
@@ -102,7 +102,7 @@ def build_wflow_recipe(
     shape: Path,
     dataset: Dataset | str | dict,
     dem_file: str,
-    extract_region: Optional[Dict[str, float]] = None,
+    extract_region: Optional[dict[str, float]] = None,
 ):
     """Build an ESMValTool recipe for the WFlow hydrological model.
 
