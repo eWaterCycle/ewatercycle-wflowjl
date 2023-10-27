@@ -50,7 +50,6 @@ ignore = [
   "PLR2004",
   "PLR0913",
   "N813",
-  "UP007",  # Not pydantic compatible.
 ]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 target-version = "py310"

@@ -2,7 +2,6 @@
 import datetime
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -117,7 +116,7 @@ def coords_to_indices(
 class WflowJlMixins(eWaterCycleModel):
     """Functionality for the Wflow.jl model."""
 
-    forcing: Optional[WflowJlForcing] = None
+    forcing: WflowJlForcing | None = None
     parameter_set: ParameterSet
 
     _config: dict = PrivateAttr()
@@ -144,7 +143,9 @@ class WflowJlMixins(eWaterCycleModel):
                 forcing_path = Path(self.forcing.netcdfinput)
 
             ds = xr.open_dataset(forcing_path)
-            self._config["calendar"] = ds["time"].attrs["calendar_type"]
+            calendar_type = ds["time"].attrs.get("calendar_type")
+            if calendar_type is not None:
+                self._config["calendar"] = calendar_type
             self._config["timestepsecs"] = int(
                 np.timedelta64(ds["time"].to_numpy()[1] - ds["time"].to_numpy()[0])
                 / np.timedelta64(1, "s")

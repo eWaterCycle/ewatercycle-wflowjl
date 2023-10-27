@@ -1,7 +1,6 @@
 """Forcing related functionality for wflow."""
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 from ewatercycle.base.forcing import DefaultForcing
 from ewatercycle.esmvaltool.builder import RecipeBuilder
@@ -23,7 +22,7 @@ class WflowJlForcing(DefaultForcing):
     """
 
     netcdfinput: str = "inmaps.nc"
-    Inflow: Optional[str] = None
+    Inflow: str | None = None
 
     @classmethod
     def generate(  # type: ignore
@@ -33,8 +32,8 @@ class WflowJlForcing(DefaultForcing):
         end_time: str,
         shape: str,
         dem_file: str,
-        directory: str | None,
-        extract_region: dict[str, float] | None,
+        directory: str | None = None,
+        extract_region: dict[str, float] | None = None,
     ) -> "WflowJlForcing":
         """Generate forcings for a model.
 
@@ -102,7 +101,7 @@ def build_wflow_recipe(
     shape: Path,
     dataset: Dataset | str | dict,
     dem_file: str,
-    extract_region: Optional[dict[str, float]] = None,
+    extract_region: dict[str, float] | None = None,
 ):
     """Build an ESMValTool recipe for the WFlow hydrological model.
 
