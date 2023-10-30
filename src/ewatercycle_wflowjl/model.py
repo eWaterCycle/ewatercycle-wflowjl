@@ -185,6 +185,8 @@ class WflowJlMixins(eWaterCycleModel):
         )
 
         # Enable the following variables for the BMI:
+        if "API" not in self._config:
+            self._config["API"] = {}
         self._config["API"]["components"] = [
             "vertical",
             "lateral.subsurface",
@@ -210,8 +212,11 @@ def check_wflow_install():
     """Check if Wflow is installed in the Juliacall environment."""
     try:
         jl.seval("using Wflow")
-    except JuliaError(match="not found in current path"):
-        install_wflow()
+    except JuliaError as e:
+        if "not found in current path" in str(e):
+            install_wflow()
+        else:
+            raise
 
 
 class WflowBmi(BmiJulia):
