@@ -53,8 +53,11 @@ def get_input_cubes(metadata):
         logger.info("Loading variable %s", short_name)
         cube = iris.load_cube(filename)
         # Make prime meridian contiguous:
+        cube.coord("longitude").bounds = None
         cube = cube.intersection(longitude=(-180.0, 180.0))
+        cube.coord("longitude").guess_bounds()
         cube.attributes.clear()
+
         all_vars[short_name] = cube
         provenance["ancestors"].append(filename)
 
@@ -116,7 +119,8 @@ def load_dem(filename: str):
     """Load DEM into iris cube."""
     logger.info("Reading digital elevation model from %s", filename)
     da = xr.open_dataset(filename)["wflow_dem"]
-    da = da.rename({"lon": "x", "lat": "y"})
+    if "lon" in da.dims:  # Deltares is not consistent in the dim naming...
+        da = da.rename({"lon": "x", "lat": "y"})
     da["x"].attrs["standard_name"] = "longitude"
     da["y"].attrs["standard_name"] = "latitude"
     da["x"].attrs["axis"] = "X"
