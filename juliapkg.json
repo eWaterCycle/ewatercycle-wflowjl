@@ -1,9 +1,0 @@
-{
-    "julia": "1.8",
-    "packages": {
-        "Wflow": {
-            "uuid": "d48b7d99-76e7-47ae-b1d5-ff0c1cf9a818",
-            "version": "0.6.2"
-        }
-    }
-}
