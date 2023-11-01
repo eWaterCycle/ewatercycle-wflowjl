@@ -221,11 +221,6 @@ def check_wflow_install():
 
 class WflowBmi(BmiJulia):
     """Wflow.jl Basic Model Interface."""
-    # @classmethod
-    # def from_name(cls, model_name, implementation_name="BasicModelInterface"):
-    #     """Overwrite parent method to return"""
-    #     m = super().from_name(model_name, implementation_name)
-    #     return m
 
     def __init__(self):
         """Wflow.jl Basic Model Interface."""
