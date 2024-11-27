@@ -27,7 +27,7 @@ dynamic = ["version"]
 # Include here only the dependencies for the eWaterCycle wrapped model
 dependencies = [
   "ewatercycle>=2.0.0b2",
-  "grpc4bmi[julia]",
+  "remotebmi",
   "toml",
 ]
 
