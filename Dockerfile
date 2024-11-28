@@ -1,4 +1,4 @@
-FROM ghcr.io/ewatercycle/remotebmi/remotebmi-julia:0.1.0
+FROM ghcr.io/ewatercycle/remotebmi-julia:0.1.0
 
 LABEL org.opencontainers.image.source="https://github.com/eWaterCycle/ewatercycle-wflowjl"
 
