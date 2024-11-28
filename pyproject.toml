@@ -26,7 +26,7 @@ dynamic = ["version"]
 
 # Include here only the dependencies for the eWaterCycle wrapped model
 dependencies = [
-  "ewatercycle>=2.0.0b2",
+  "ewatercycle>=2.4.0",
   "remotebmi",
   "toml",
 ]
@@ -42,7 +42,7 @@ dev = [
 WflowJl = "ewatercycle_wflowjl.model:WflowJl"
 
 [project.entry-points."ewatercycle.forcings"]
-WflowJlForcing = "ewatercycle_wflow.forcing.forcing:WflowJlForcing"
+WflowJlForcing = "ewatercycle_wflowjl.forcing.forcing:WflowJlForcing"
 
 [tool.ruff]
 select = ["E", "F", "B", "D", "C90", "I", "N", "UP", "PLE", "PLR", "PLW"]
