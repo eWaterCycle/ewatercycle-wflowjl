@@ -1,4 +1,5 @@
 """Forcing related functionality for wflow."""
+
 from datetime import datetime
 from pathlib import Path
 
