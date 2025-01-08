@@ -26,8 +26,8 @@ dynamic = ["version"]
 
 # Include here only the dependencies for the eWaterCycle wrapped model
 dependencies = [
-  "ewatercycle>=2.0.0b2",
-  "grpc4bmi[julia]",
+  "ewatercycle>=2.4.0",
+  "remotebmi",
   "toml",
 ]
 
@@ -42,9 +42,13 @@ dev = [
 WflowJl = "ewatercycle_wflowjl.model:WflowJl"
 
 [project.entry-points."ewatercycle.forcings"]
-WflowJlForcing = "ewatercycle_wflow.forcing.forcing:WflowJlForcing"
+WflowJlForcing = "ewatercycle_wflowjl.forcing.forcing:WflowJlForcing"
 
 [tool.ruff]
+target-version = "py310"
+extend-exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
 select = ["E", "F", "B", "D", "C90", "I", "N", "UP", "PLE", "PLR", "PLW"]
 extend-select = ["D401", "D400", "D404", "TID252"]
 ignore = [
@@ -53,12 +57,11 @@ ignore = [
   "N813",
 ]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-target-version = "py310"
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["ewatercycle_wflow"]
 force-single-line = true
 lines-after-imports = 2

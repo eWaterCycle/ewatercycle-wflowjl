@@ -1,21 +1,20 @@
 """Wflow.jl eWaterCycle Model."""
+
 import datetime
 from collections.abc import Iterable
 from pathlib import Path
+from typing import Literal
 
 import numpy as np
 import pandas as pd
 import toml
 import xarray as xr
-from bmipy import Bmi
-from ewatercycle.base.model import LocalModel
+from ewatercycle.base.model import ContainerizedModel
 from ewatercycle.base.model import eWaterCycleModel
 from ewatercycle.base.parameter_set import ParameterSet
+from ewatercycle.container import ContainerImage
 from ewatercycle.util import geographical_distances
 from ewatercycle.util import get_time
-from grpc4bmi.bmi_julia_model import BmiJulia
-from juliacall import JuliaError
-from juliacall import Main as jl
 from pydantic import PrivateAttr
 from pydantic import model_validator
 
@@ -201,39 +200,13 @@ class WflowJlMixins(eWaterCycleModel):
         return config_file
 
 
-def install_wflow():
-    """Install Wflow.jl with the BMI branch."""
-    jl.seval("import Pkg")
-    jl.Pkg.add(name="Wflow", rev="BMI")
-    jl.Pkg.add("BasicModelInterface")
-
-
-def check_wflow_install():
-    """Check if Wflow is installed in the Juliacall environment."""
-    try:
-        jl.seval("using Wflow")
-    except JuliaError as e:
-        if "not found in current path" in str(e):
-            install_wflow()
-        else:
-            raise
-
-
-class WflowBmi(BmiJulia):
-    """Wflow.jl Basic Model Interface."""
-
-    def __init__(self):
-        """Wflow.jl Basic Model Interface."""
-        check_wflow_install()
-
-        m = self.from_name("Wflow.Model", implementation_name="Wflow.BMI")
-        super().__init__(m.model, m.implementation)
-
-
-class WflowJl(WflowJlMixins, LocalModel):
+class WflowJl(WflowJlMixins, ContainerizedModel):
     """Wflow.jl eWaterCycle LocalModel."""
 
-    bmi_class: type[Bmi] = WflowBmi
+    bmi_image: ContainerImage = ContainerImage(
+        "ghcr.io/ewatercycle/wflowjl-remotebmi:0.2.0"
+    )
+    protocol: Literal["grpc", "openapi"] = "openapi"
 
     def get_latlon_grid(self, name: str) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Grid latitude, longitude and shape for variable.

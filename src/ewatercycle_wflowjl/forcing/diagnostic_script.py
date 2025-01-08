@@ -1,4 +1,5 @@
 """wflow diagnostic."""
+
 import logging
 from pathlib import Path
 
